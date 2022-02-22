@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/number_of_people"
-        android:textSize="24sp"
+        android:textSize="@dimen/label_text_size"
         android:labelFor="@id/num_attend_edit_text" />
 
     <EditText

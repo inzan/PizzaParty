@@ -9,10 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlin.math.ceil
 import android.util.Log
 
+/**
+ * The Main Activity of the Pizza Party App
+ *
+ * This class lets you calculate how many pizzas you will need
+ */
 
 const val TAG = "MainActivity"
-
-//const val SLICES_PER_PIZZA = 8
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +23,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var numPizzasTextView: TextView
     private lateinit var howHungryRadioGroup: RadioGroup
 
+    /**
+     * Called after Activity is created
+     * @param savedInstanceState the app bundle
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -31,6 +38,10 @@ class MainActivity : AppCompatActivity() {
         howHungryRadioGroup = findViewById(R.id.hungry_radio_group)
     }
 
+    /**
+     * Called when calculate button is clicked
+     * @param view the view
+     */
     fun calculateClick(view: View) {
 
         // Get the text that was typed into the EditText
