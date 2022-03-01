@@ -16,8 +16,11 @@ import android.util.Log
  */
 
 const val TAG = "MainActivity"
+private const val KEY_TOTAL_PIZZAS = "totalPizzas"
 
 class MainActivity : AppCompatActivity() {
+
+    private var totalPizzas = 0
 
     private lateinit var numAttendEditText: EditText
     private lateinit var numPizzasTextView: TextView
@@ -36,6 +39,16 @@ class MainActivity : AppCompatActivity() {
         numAttendEditText = findViewById(R.id.num_attend_edit_text)
         numPizzasTextView = findViewById(R.id.num_pizzas_text_view)
         howHungryRadioGroup = findViewById(R.id.hungry_radio_group)
+
+        if (savedInstanceState != null) {
+            totalPizzas = savedInstanceState.getInt(KEY_TOTAL_PIZZAS)
+            displayTotal()
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(KEY_TOTAL_PIZZAS, totalPizzas)
     }
 
     /**
@@ -58,11 +71,20 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Get the number of pizzas needed
-        val calc = PizzaCalculator(numAttend, hungerLevel)
-        val totalPizzas = calc.totalPizzas
+//        val calc = PizzaCalculator(numAttend, hungerLevel)
+//        val totalPizzas = calc.totalPizzas
+//
+//        // Place totalPizzas into the string resource and display
+//        val totalText = getString(R.string.total_pizzas, totalPizzas)
+//        numPizzasTextView.setText(totalText)
 
-        // Place totalPizzas into the string resource and display
+        val calc = PizzaCalculator(numAttend, hungerLevel)
+        totalPizzas = calc.totalPizzas
+        displayTotal()
+    }
+
+    private fun displayTotal() {
         val totalText = getString(R.string.total_pizzas, totalPizzas)
-        numPizzasTextView.setText(totalText)
+        numPizzasTextView.text = totalText
     }
 }
