@@ -1,13 +1,15 @@
 package com.zybooks.pizzaparty
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import kotlin.math.ceil
-import android.util.Log
+
 
 /**
  * The Main Activity of the Pizza Party App
@@ -44,6 +46,29 @@ class MainActivity : AppCompatActivity() {
             totalPizzas = savedInstanceState.getInt(KEY_TOTAL_PIZZAS)
             displayTotal()
         }
+
+        // Not sure what I am supposed to do here. The assignment says:
+        //
+        // "Add a TextWatcher to Pizza Party's numAttendEditText.
+        // The TextWatcher should set numAttendEditText's text to
+        // an empty string as soon as the user starts typing the number of people."
+        //
+        // If I set the text to an empty string as soon as they start typing
+        // how will they be able to enter a value?
+        numAttendEditText.addTextChangedListener(object : TextWatcher {
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            }
+
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int, count: Int,
+                after: Int
+            ) {
+            }
+
+            override fun afterTextChanged(s: Editable) {
+            }
+        })
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -71,13 +96,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Get the number of pizzas needed
-//        val calc = PizzaCalculator(numAttend, hungerLevel)
-//        val totalPizzas = calc.totalPizzas
-//
-//        // Place totalPizzas into the string resource and display
-//        val totalText = getString(R.string.total_pizzas, totalPizzas)
-//        numPizzasTextView.setText(totalText)
-
         val calc = PizzaCalculator(numAttend, hungerLevel)
         totalPizzas = calc.totalPizzas
         displayTotal()

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/pizza_background"
-    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -13,24 +14,33 @@
     tools:context="com.zybooks.pizzaparty.MainActivity">
 
     <TextView
+        android:id="@+id/num_attend_label_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:labelFor="@id/num_attend_edit_text"
         android:text="@string/number_of_people"
         android:textSize="@dimen/label_text_size"
-        android:labelFor="@id/num_attend_edit_text" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/num_attend_edit_text"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <EditText
         android:id="@+id/num_attend_edit_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
         android:ems="5"
+        android:hint="@string/_10"
         android:importantForAutofill="no"
-        android:hint="@string/_10" />
+        android:inputType="number"
+        app:layout_constraintLeft_toRightOf="@+id/num_attend_label_text"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
+        android:id="@+id/hungry_label_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/num_attend_label_text"
+        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="20dp"
         android:text="@string/how_hungry"
         android:textSize="24sp"
@@ -40,6 +50,8 @@
         android:id="@+id/hungry_radio_group"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/hungry_label_text"
+        app:layout_constraintLeft_toLeftOf="parent"
         android:orientation="horizontal">
         <RadioButton
             android:id="@+id/light_radio_button"
@@ -64,14 +76,19 @@
         android:text="@string/total_pizzas1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/hungry_radio_group"
+        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="20dp"
         android:textSize="24sp"/>
 
     <Button
         android:id="@+id/calc_button"
+        style="@style/CalcButton"
         android:text="@string/calculate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/num_pizzas_text_view"
+        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="20dp"
         android:onClick="calculateClick" />
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
